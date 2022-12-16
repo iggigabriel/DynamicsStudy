@@ -9,6 +9,8 @@ Some notes why its not great in its current state:
 - I serialize F/D/R parameters in both the Dynamics State and Curve fields to make it more convenient to use, but that means data desync is possible, for general purpose use i would change this to single-source-of-truth architecture
 - Graph Editor is currently made specifically for this type of curve, but it would be better if it worked with any object that implements specific interface
 
+Made with Unity 2021.3.15f
+
 ## Features
 
 ### Graph Editor
