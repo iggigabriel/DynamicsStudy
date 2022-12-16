@@ -18,8 +18,7 @@ Made with Unity 2021.3.15f
 https://user-images.githubusercontent.com/1765354/208084449-1f5afd39-bfc0-415a-85c4-b15e871ab80f.mp4
 
 
-
-### Playground Sample
+### Playground Sample ([WebGL Demo](https://noopol.com/dynamics-demos/))
 
 https://user-images.githubusercontent.com/1765354/208079095-91f09c4a-acf2-468e-a65a-f52c0face000.mp4
 
