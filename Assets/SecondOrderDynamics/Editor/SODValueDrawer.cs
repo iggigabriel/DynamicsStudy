@@ -4,6 +4,12 @@ using UnityEngine;
 namespace Dynamics.Editor
 {
     [CustomPropertyDrawer(typeof(SODValue<,>), true)]
+    [CustomPropertyDrawer(typeof(SODFloat))]
+    [CustomPropertyDrawer(typeof(SODAngle))]
+    [CustomPropertyDrawer(typeof(SODFloat2))]
+    [CustomPropertyDrawer(typeof(SODFloat3))]
+    [CustomPropertyDrawer(typeof(SODFloat4))]
+    [CustomPropertyDrawer(typeof(SODQuaternion))]
     public class SODValueDrawer : PropertyDrawer
     {
         static float LineHeight => EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
