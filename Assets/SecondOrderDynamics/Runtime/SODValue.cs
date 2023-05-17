@@ -95,4 +95,40 @@ namespace Dynamics
         public override void Update(float deltaTime) => SecondOrderDynamics.UpdateState(ref state, deltaTime);
         public override void Reset(quaternion value, bool resetVelocity = true, bool resetTime = true) => state.Reset(value.value, resetVelocity, resetTime);
     }
+
+    [Serializable]
+    public class SODAngle : SODValue<float, float>
+    {
+        public override float PreviousValue { get => state.previousValue; set { state.previousValue = value; Update(0f); } }
+        public override float Velocity { get => state.velocity; set => state.velocity = value; }
+        public override float PreviousTarget { get => state.previousTarget; set => state.previousTarget = value; }
+        public override float Target { get => state.target; set => state.target = value; }
+        public override float Value => state.value;
+
+        /// <summary>Returns value from 0 to 360 degrees</summary>
+        public float NormalizedValue => NormalizeAngle(state.value);
+
+        public override void Update(float deltaTime) => SecondOrderDynamics.UpdateState(ref state, deltaTime);
+        public override void Reset(float value, bool resetVelocity = true, bool resetTime = true) => state.Reset(value, resetVelocity, resetTime);
+
+        /// <summary>Sets target angle to value in range from -180 to +180 around previous target value</summary>
+        public void SetTargetNormalized(float angle)
+        {
+            state.target = SignedAngleAroundPivot(angle, state.target);
+        }
+
+        /// <summary>Normalizes angle from 0 to 360 degrees</summary>
+        public static float NormalizeAngle(float angle)
+        {
+            return math.clamp(angle - math.floor(angle / 360f) * 360f, 0f, 360f);
+        }
+
+        /// <summary>Normalizes angle from -180 to +180 around pivot angle</summary>
+        public static float SignedAngleAroundPivot(float angle, float pivot)
+        {
+            angle = angle - pivot + 180f;
+
+            return math.clamp(angle - math.floor(angle / 360f) * 360f, 0f, 360f) - 180f + pivot;
+        }
+    }
 }
